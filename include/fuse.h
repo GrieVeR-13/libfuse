@@ -1083,6 +1083,13 @@ int fuse_invalidate_path(struct fuse *f, const char *path);
 int fuse_main_real(int argc, char *argv[], const struct fuse_operations *op,
 		   size_t op_size, void *private_data);
 
+int fuse_main_mount(int argc, char *argv[], const struct fuse_operations *op,
+					size_t op_size, void *user_data, struct fuse **fuse_result);
+
+int fuse_main_loop(struct fuse *fuse);
+
+void fuse_main_unmount(struct fuse *fuse);
+
 /**
  * Start the cleanup thread when using option "remember".
  *

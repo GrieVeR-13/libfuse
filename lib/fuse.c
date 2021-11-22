@@ -4574,7 +4574,7 @@ int fuse_loop(struct fuse *f)
 	return fuse_session_loop(f->se);
 }
 
-FUSE_SYMVER("fuse_loop_mt_32", "fuse_loop_mt@@FUSE_3.2")
+//FUSE_SYMVER("fuse_loop_mt_32", "fuse_loop_mt@@FUSE_3.2")
 int fuse_loop_mt_32(struct fuse *f, struct fuse_loop_config *config)
 {
 	if (f == NULL)
@@ -4590,7 +4590,7 @@ int fuse_loop_mt_32(struct fuse *f, struct fuse_loop_config *config)
 }
 
 int fuse_loop_mt_31(struct fuse *f, int clone_fd);
-FUSE_SYMVER("fuse_loop_mt_31", "fuse_loop_mt@FUSE_3.0")
+//FUSE_SYMVER("fuse_loop_mt_31", "fuse_loop_mt@FUSE_3.0")
 int fuse_loop_mt_31(struct fuse *f, int clone_fd)
 {
 	struct fuse_loop_config config;
@@ -4868,14 +4868,14 @@ void fuse_stop_cleanup_thread(struct fuse *f)
 {
 	if (lru_enabled(f)) {
 		pthread_mutex_lock(&f->lock);
-		pthread_cancel(f->prune_thread);
+//		pthread_cancel(f->prune_thread);
 		pthread_mutex_unlock(&f->lock);
 		pthread_join(f->prune_thread, NULL);
 	}
 }
 
 
-FUSE_SYMVER("fuse_new_31", "fuse_new@@FUSE_3.1")
+//FUSE_SYMVER("fuse_new_31", "fuse_new@@FUSE_3.1")
 struct fuse *fuse_new_31(struct fuse_args *args,
 		      const struct fuse_operations *op,
 		      size_t op_size, void *user_data)
@@ -5029,7 +5029,7 @@ out:
 /* Emulates 3.0-style fuse_new(), which processes --help */
 struct fuse *fuse_new_30(struct fuse_args *args, const struct fuse_operations *op,
 			 size_t op_size, void *private_data);
-FUSE_SYMVER("fuse_new_30", "fuse_new@FUSE_3.0")
+//FUSE_SYMVER("fuse_new_30", "fuse_new@FUSE_3.0")
 struct fuse *fuse_new_30(struct fuse_args *args,
 			 const struct fuse_operations *op,
 			 size_t op_size, void *user_data)

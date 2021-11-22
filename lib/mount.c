@@ -114,6 +114,7 @@ static const struct fuse_opt fuse_mount_opts[] = {
 	FUSE_OPT_END
 };
 
+#define FUSERMOUNT_DIR ""
 static void exec_fusermount(const char *argv[])
 {
 	execv(FUSERMOUNT_DIR "/" FUSERMOUNT_PROG, (char **) argv);

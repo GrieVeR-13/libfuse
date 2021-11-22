@@ -122,9 +122,9 @@ static void *fuse_do_work(void *data)
 		int isforget = 0;
 		int res;
 
-		pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
+//		pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
 		res = fuse_session_receive_buf_int(mt->se, &w->fbuf, w->ch);
-		pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, NULL);
+//		pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, NULL);
 		if (res == -EINTR)
 			continue;
 		if (res <= 0) {
@@ -303,7 +303,7 @@ static void fuse_join_worker(struct fuse_mt *mt, struct fuse_worker *w)
 	free(w);
 }
 
-FUSE_SYMVER("fuse_session_loop_mt_32", "fuse_session_loop_mt@@FUSE_3.2")
+//FUSE_SYMVER("fuse_session_loop_mt_32", "fuse_session_loop_mt@@FUSE_3.2")
 int fuse_session_loop_mt_32(struct fuse_session *se, struct fuse_loop_config *config)
 {
 	int err;
@@ -331,8 +331,8 @@ int fuse_session_loop_mt_32(struct fuse_session *se, struct fuse_loop_config *co
 			sem_wait(&mt.finish);
 
 		pthread_mutex_lock(&mt.lock);
-		for (w = mt.main.next; w != &mt.main; w = w->next)
-			pthread_cancel(w->thread_id);
+//		for (w = mt.main.next; w != &mt.main; w = w->next)
+//			pthread_cancel(w->thread_id);
 		mt.exit = 1;
 		pthread_mutex_unlock(&mt.lock);
 
@@ -351,7 +351,7 @@ int fuse_session_loop_mt_32(struct fuse_session *se, struct fuse_loop_config *co
 }
 
 int fuse_session_loop_mt_31(struct fuse_session *se, int clone_fd);
-FUSE_SYMVER("fuse_session_loop_mt_31", "fuse_session_loop_mt@FUSE_3.0")
+//FUSE_SYMVER("fuse_session_loop_mt_31", "fuse_session_loop_mt@FUSE_3.0")
 int fuse_session_loop_mt_31(struct fuse_session *se, int clone_fd)
 {
 	struct fuse_loop_config config;
