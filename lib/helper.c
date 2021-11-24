@@ -324,7 +324,6 @@ int fuse_main_real(int argc, char *argv[], const struct fuse_operations *op,
 		goto out2;
 	}
 
-	opts.foreground = 1;
 	if (fuse_daemonize(opts.foreground) != 0) {
 		res = 5;
 		goto out3;
@@ -336,7 +335,6 @@ int fuse_main_real(int argc, char *argv[], const struct fuse_operations *op,
 		goto out3;
 	}
 
-	opts.singlethread = 1;
 	if (opts.singlethread)
 		res = fuse_loop(fuse);
 	else {
